@@ -8,12 +8,17 @@
 import os
 import shutil
 
+def trenner(anzahl):
+    for i in range(anzahl):
+        print("*", end="")
+    print()
+
 # Liste zum Speichern der einzelnen Zeilen des Logs
 log_lines = []
 
-print("------------------------------------")
+trenner(50)
 print("Willkommen beim Log File Reader")
-print("------------------------------------")
+trenner(50)
 betriebssystem = input("Welches Betriebssystem nutzen Sie (mac/win): ")
 
 if betriebssystem == "mac":

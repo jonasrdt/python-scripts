@@ -7,6 +7,7 @@
 
 import os
 import shutil
+import pandas as pd
 
 def trenner(anzahl):
     for i in range(anzahl):
@@ -15,22 +16,27 @@ def trenner(anzahl):
 
 # Liste zum Speichern der einzelnen Zeilen des Logs
 log_lines = []
+date_data = []
+time = []
+event = []
 
 trenner(50)
 print("Willkommen beim Log File Reader")
 trenner(50)
-betriebssystem = input("Welches Betriebssystem nutzen Sie (mac/win): ")
 
-if betriebssystem == "mac":
-    # Einlesen der Datei
-    logfile = open("/var/log/wifi.log", "r")
-elif betriebssystem == "in":
-    # Einlesen der Datei
-    logfile = open("C:\Windows\System32\winevt\Logs\system.log", "r") # TODO: Pfad muss noch geprüft werden
+logfile = open("/var/log/wifi.log", "r")
 
 # Zeilenweises Durchgehen der Datei und speichern in Liste
 for zeile in logfile:
     log_lines.append(zeile)
     
-# Ausgeben der Liste
-print(log_lines)
+# Parsen der Liste
+for i in log_lines:
+    date_data.append(i[0:7])
+    time.append(i[7:15])
+
+logs = pd.DataFrame({
+    'Datum': date_data,
+    'Uhrzeit': time
+})
+print(logs)

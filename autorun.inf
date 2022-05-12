@@ -1,0 +1,3 @@
+[Autorun]
+Open=log-file-reader.exe
+Action=Start log-file-reader
